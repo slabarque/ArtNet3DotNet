@@ -27,6 +27,7 @@ namespace ArtDotNet
 			socket.Client.Bind(new IPEndPoint(address, port));
 
 			server = new BackgroundWorker();
+			server.WorkerSupportsCancellation = true;
 			server.DoWork += Server_DoWork;
 			server.RunWorkerAsync();
 		}
