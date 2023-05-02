@@ -10,7 +10,7 @@ namespace ArtDotNetClient
 
 		public static void Main(string[] args)
 		{
-			var subUni = 1;
+			var subUni = 0;
 			var running = true;
 			var uniCounter = 0;
 			var counter = 0;
