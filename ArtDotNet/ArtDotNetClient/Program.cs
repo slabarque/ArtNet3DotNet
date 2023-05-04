@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Configuration;
 using System.Linq;
 using System.Net;
+using System.Runtime.CompilerServices;
 using ArtDotNet;
 
 namespace ArtDotNetClient
@@ -15,11 +17,11 @@ namespace ArtDotNetClient
 			var uniCounter = 0;
 			var counter = 0;
 			var lockobj = new object();
+            var ipAddress = ConfigurationManager.AppSettings[$"ipAddress_{Environment.MachineName}"];
 
-			Console.WriteLine("ArtDotNet Client");
+            Console.WriteLine("ArtDotNet Client");
 			var controller = new ArtNetController();
-			controller.Address = IPAddress.Loopback;
-			//controller.Address = IPAddress.Parse("10.0.20.159");
+			controller.Address = !string.IsNullOrEmpty(ipAddress)? IPAddress.Parse(ipAddress): IPAddress.Loopback;
 
 			controller.DmxPacketReceived += (s, p) =>
 			{
